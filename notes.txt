@@ -1,0 +1,328 @@
+typeof operator or function
+For null type returns "object" – this is an error in the language, it’s not actually an object.
+
+///////////////////////////////////////////
+For a non-strict check ==
+There’s a special rule. These two are a “sweet couple”: they equal each other (in the sense of ==), but not any other value.
+"null and undefined"
+
+
+//////////////////////
+
+Strange result: null vs 0
+Let’s compare null with a zero:
+
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
+
+Mathematically, that’s strange. The last result states that "null is greater than or equal to zero", so in one of the comparisons above it must be true, but they are both false.
+
+The reason is that an equality check == and comparisons > < >= <= work differently. Comparisons convert null to a number, treating it as 0. That’s why (3) null >= 0 is true and (1) null > 0 is false.
+
+On the other hand, the equality check == for undefined and null is defined such that, without any conversions, they equal each other and don’t equal anything else. That’s why (2) null == 0 is false.
+
+///////////////////////////////
+Comparison of different types
+When comparing values of different types, JavaScript converts the values to numbers.
+
+for same type no conversions occur
+"2" > "12" → true
+
+
+
+/////////////////////////////
+An incomparable undefined
+The value undefined shouldn’t be compared to other values:
+
+
+
+////////////////////////////
+Interaction: alert, prompt, confirm
+
+alert
+shows a message.
+prompt
+shows a message asking the user to input text. It returns the text or, if Cancel button or Esc is clicked, null.
+confirm
+shows a message and waits for the user to press “OK” or “Cancel”. It returns true for OK and false for Cancel/Esc.
+All these methods are modal: they pause script execution and don’t allow the visitor to interact with the rest of the page until the window has been dismissed.
+
+There are two limitations shared by all the methods above:
+
+The exact location of the modal window is determined by the browser. Usually, it’s in the center.
+The exact look of the window also depends on the browser. We can’t modify it.
+That is the price for simplicity. There are other ways to show nicer windows and richer interaction with the visitor, but if “bells and whistles” do not matter much, these methods work just fine.
+
+***
+In IE: always supply a default
+The second parameter is optional, but if we don’t supply it, Internet Explorer will insert the text "undefined" into the prompt.
+
+
+////////////////////////////
+logical OR ->
+
+1. The OR || operator does the following:
+
+Evaluates operands from left to right.
+For each operand, converts it to boolean. If the result is true, stops and returns the original value of that operand.
+If all operands have been evaluated (i.e. all were false), returns the last operand.
+A value is returned in its original form, without the conversion.
+
+In other words, a chain of OR "||" returns the first truthy value or the last one if no truthy value is found.
+
+2. Short-circuit evaluation.
+
+Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. This process is called “a short-circuit evaluation” because it goes as short as possible from left to right.
+
+
+let x;
+
+true || (x = 1);
+
+alert(x); // undefined, because (x = 1) not evaluated
+
+
+This is clearly seen when the expression given as the second argument has a side effect like a variable assignment.
+
+logical AND ->
+
+AND “&&” finds the first falsy value
+Given multiple AND’ed values:
+
+result = value1 && value2 && value3;
+The AND && operator does the following:
+
+Evaluates operands from left to right.
+For each operand, converts it to a boolean. If the result is false, stops and returns the original value of that operand.
+If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+In other words, AND returns the first falsy value or the last value if none were found.
+
+The rules above are similar to OR. The difference is that AND returns the first falsy value while OR returns the first truthy one.
+
+NOT -> 
+!(NOT)
+The boolean NOT operator is represented with an exclamation sign !.
+
+The syntax is pretty simple:
+
+result = !value;
+The operator accepts a single argument and does the following:
+
+Converts the operand to boolean type: true/false.
+Returns the inverse value.
+
+*******
+A double NOT !! is sometimes used for converting a value to boolean type:
+alert( !!"non-empty string" ); // true
+
+
+******
+*******
+precedence AND, OR, !
+
+The precedence of NOT ! is the highest of all logical operators, so it always executes first, before && or ||.
+
+Precedence of AND && is higher than OR ||
+
+So the code a && b || c && d is essentially the same as if the && expressions were in parentheses: (a && b) || (c && d).
+
+
+
+
+/////////////////////////////////
+The call to alert does not return a value. Or, in other words, it returns undefined.
+
+
+
+///////////////////////////////
+if else normal
+
+
+//////////////////////////////////
+A single execution of the loop body is called an iteration. 
+
+Inline variable declaration in for loop
+Here, the “counter” variable i is declared right in the loop. This is called an “inline” variable declaration. Such variables are visible only inside the loop.
+
+The continue directive helps decrease nesting
+
+-> Labels for break/continue
+
+A label is an identifier with a colon before a loop:
+
+labelName: for (...) {
+  ...
+}
+
+eg.
+
+In the code above, break outer looks upwards for the label named outer and breaks out of that loop.
+
+So the control goes straight from (*) to alert('Done!').
+
+Labels do not allow to “jump” anywhere
+Labels do not allow us to jump into an arbitrary place in the code.
+
+
+///////////////////////////////////
+switch statement->
+
+The switch has one or more case blocks and an optional default.
+
+It looks like this:
+
+switch(x) {
+  case 'value1':  // if (x === 'value1')
+    ...
+    [break]
+
+  case 'value2':  // if (x === 'value2')
+    ...
+    [break]
+
+  default:
+    ...
+    [break]
+}
+The value of x is checked for a strict equality to the value from the first case (that is, value1) then to the second (value2) and so on.
+If the equality is found, switch starts to execute the code starting from the corresponding case, until the nearest break (or until the end of switch).
+If no case is matched then the default code is executed (if it exists).
+
+******
+If there is no break then the execution continues with the next case without any checks.
+
+
+//////////////////////////////
+functions->
+
+Function Declaration----
+function showMessage() {
+  alert( 'Hello everyone!' );
+}
+
+concept of local and global variable is normal
+
+If a same-named variable is declared inside the function then it shadows the outer one. For instance, in the code below the function uses the local userName. The outer one is ignored:
+
+Global variables are visible from any function (unless shadowed by locals).
+
+It’s a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
+
+
+Parameter->
+
+parameters (also called function arguments) .
+
+Default values
+If a parameter is not provided, then its value becomes undefined.
+
+That’s not an error. Such a call would output "Ann: undefined". There’s no text, so it’s assumed that text === undefined.
+
+If we want to use a “default” text in this case, then we can specify it after =:
+
+function showMessage(from, text = "no text given") {
+  alert( from + ": " + text );
+}
+
+showMessage("Ann");
+
+***
+A function with an empty return or without it returns undefined
+
+
+
+Never add a newline between return and the value
+That doesn’t work, because JavaScript assumes a semicolon after return. That’ll work the same as:
+
+return;
+ (some + long + expression + or + whatever * f(a) + f(b))
+
+->
+
+Values passed to a function as parameters are copied to its local variables.
+A function may access outer variables. But it works only from inside out. The code outside of the function doesn’t see its local variables.
+A function can return a value. If it doesn’t, then its result is undefined.
+To make the code clean and easy to understand, it’s recommended to use mainly local variables and parameters in the function, not outer variables.
+
+It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side-effect.
+
+Function naming:
+
+A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding what it does and returns.
+A function is an action, so function names are usually verbal.
+There exist many well-known function prefixes like create…, show…, get…, check… and so on. Use them to hint what a function does.
+Functions are the main building blocks of scripts. Now we’ve covered the basics, so we actually can start creating and using them. But that’s only the beginning of the path. We are going to return to them many times, going more deeply into their advanced features.
+
+
+
+///////////////////////////////////
+
+function expressions->
+
+The syntax that we used before is called a Function Declaration:
+
+function sayHi() {
+  alert( "Hello" );
+}
+
+alert( sayHi ); // shows the function code
+Please note that the last line does not run the function, because there are no parentheses after sayHi
+
+*****
+
+let sayHi = function() {
+  alert( "Hello" );
+};
+
+Why is there a semicolon at the end?
+->The answer is simple:
+
+There’s no need for ; at the end of code blocks and syntax structures that use them like if { ... }, for { }, function f { } etc.
+A Function Expression is used inside the statement: let sayHi = ...;, as a value. It’s not a code block, but rather an assignment. The semicolon ; is recommended at the end of statements, no matter what the value is. So the semicolon here is not related to the Function Expression itself, it just terminates the statement.
+
+
+callback functions->
+
+function showOk() {
+  alert( "You agreed." );
+}
+
+function showCancel() {
+  alert( "You canceled the execution." );
+}
+
+The arguments showOk and showCancel of ask are called callback functions or just callbacks.
+
+ function is a value representing an “action”
+Regular values like strings or numbers represent the data.
+
+A function can be perceived as an action.
+
+We can pass it between variables and run when we want.
+
+difference btw function expression and function declaration
+A Function Expression is created when the execution reaches it and is usable only from that moment.
+
+A Function Declaration can be called earlier than it is defined.
+
+When to choose Function Declaration versus Function Expression?
+As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+
+That’s also better for readability, as it’s easier to look up function f(…) {…} in the code than let f = function(…) {…};. Function Declarations are more “eye-catching”.
+
+…But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we’ve just seen an example), then Function Expression should be used.
+
+arrow function->
+let func = (arg1, arg2, ...argN) => expression
+
+If we have only one argument, then parentheses around parameters can be omitted, making that even shorter.
+eg
+let double = n => n * 2;
+
+Without curly braces: (...args) => expression – the right side is an expression: the function evaluates it and returns the result.
+
+With curly braces: (...args) => { body } – brackets allow us to write multiple statements inside the function, but we need an explicit return to return something.
+
+
+debugging i

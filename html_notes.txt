@@ -1,0 +1,13 @@
+/////////////////////
+topic -> Internet
+
+keywords -> client, server, DNS, 
+
+explanation ->
+The users computers that access the Internet are called clients.
+The computers that gives data to the client are called servers.
+The client and servers are connected by some hardwire connection which is known as backbone.
+How internet works?
+The client makes a request for a website. This request goes to internet service provider (ISP) that relays the message to domain name system (DNS) server. Which is like a phone book mapping the website name with the IP address of the server which contains data related to the website. The DNS server returns that IP address to ISP which makes request for the website content at this address. The server returns the content on getting request and it reaches the client.
+
+screenshot windows+shift+s
