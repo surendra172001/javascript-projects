@@ -1,32 +1,49 @@
 
 const express = require("express");
-
+const path = require('path');
 const bodyParser = require("body-parser");
-const urlencodedParser = bodyParser.urlencoded({ extended: true })
 
 let items = ["Awesome", "Awesome", "Awesome"];
+let workItems = [];
 
 app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(urlencodedParser);
-app.use(express.static(__dirname + '/public/'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
 
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let today = new Date();
     let day = today.toLocaleDateString("hi-IN", options);
+    let pageName = '/';
 
-    res.render('list', {eday : day, eitems : items});
+    res.render('list', {listTitle : day, eitems : items, epageName : pageName});
 });
+
 
 app.post('/', function(req, res){
     let item = req.body.newItem;
     items.push(item);
-    res.redirect("/");
+    res.redirect('/');
 });
+
+
+app.get('/work', function(req, res){
+    let pageName = '/work';
+    res.render('list', {listTitle : 'Work day', eitems : workItems,  epageName : pageName});
+});
+
+
+app.post('/work', function(req, res){
+    let item = req.body.newItem;
+    workItems.push(item);
+    res.redirect('/work');
+});
+
 
 
 // app.get('/home', function(req, res){

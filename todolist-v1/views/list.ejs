@@ -5,23 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link type="text/css" href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <h1>Today is <%= eday %> </h1>
+    <div class="box" id="heading">
+        <h1><%= listTitle %> </h1>
+    </div>
 
-    <ul>
+    <div class="box">
         <% eitems.forEach(function(item){ %>
-        <li> <%= item %> </li>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= item %></p>
+            </div>
         <% }); %>
-    </ul>
+        
+        <form class="item" action=<%= epageName %>  method="POST">
+            <input type="text" name="newItem" id="" placeholder="new Item" autocomplete="off"><br>
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
+        </form>
+    </div>
 
-    <form action="/" method="POST">
-        <input type="text" name="newItem" id=""><br>
-        <button type="submit" name="button">Add</button>
-    </form>
 
 
 </body>
