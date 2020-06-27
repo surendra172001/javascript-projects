@@ -1,0 +1,49 @@
+<%- include("partials/header") -%>
+ 
+<!-- <form action="login" method="POST">
+    <label>type</label>
+    <select name="type">
+        <option value="shopowner"> Shopowner</option>
+        <option value="customer"> Customer</option>
+    </select><br><br>
+    <label>Username</label><input type="text" name="username" placeholder="username"><br><br>
+    <label>Password</label><input type="text" name="password" placeholder="password"><br><br>
+    <button type="submit">Login</button><br><br>
+
+<a href="register">Register</a>
+</form> -->
+
+<script>
+    document.body.style.background =" rgb(45, 65, 23)";
+    document.body.style.color =" #ffffff";
+</script>
+
+<div class="login-form mt-5" style="height: 600px;">
+    <form action="login" method="POST">
+		<div class="avatar">
+			<img src="img/examples/login_avatar.png" alt="Avatar">
+		</div>
+        <h2 class="text-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Login</h2> 
+        <div class="form-group mb-5">
+            <select class="form-control" name="type">
+                <option value="shopowner"> Shopowner</option>
+                <option value="customer"> Customer</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+        	<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+        </div>
+		
+    </form>
+    <p class="text-center small" style="color: black; font-size: medium;">Don't have an account? <a href="register">Sign up here!</a></p>
+</div><br><br><br>
+
+</body>
+</html>

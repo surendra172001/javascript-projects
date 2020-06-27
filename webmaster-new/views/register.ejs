@@ -1,0 +1,28 @@
+
+<%- include("partials/header") -%>
+
+<script>
+    document.body.style.background =" #d47677";
+    document.body.style.color =" #ffffff";
+    var myobj = document.getElementById("signIn");
+    myobj.remove();
+</script>
+<body style="background-color: rgb(93, 7, 7)">
+<div class="d-flex flex-row-reverse p-3 text-dark" style="background-color: #2a1a30;">
+    <div class="p-2 text-center" style="border-radius: 10px; width : 10%; height:40px ; padding-bottom : 0px;"></div>
+</div>
+
+<div class="container" style="background: transparent;">
+    <div class="jumbotron text-center" style="background: transparent;">
+        <a href="registerowner">
+            <button type="button" class="btn btn-primary" style=" background-color: grey; border: solid black; font-size: 30px; font-family:Arial, Helvetica, sans-serif; border-radius: 90px;">Regiter As Owner</button>
+        </a>
+    </div>
+    <div class="jumbotron text-center" style="background: transparent;">
+        <a href="registercustomer">
+            <button type="button" class="btn btn-primary" style=" background-color: grey; border: solid black; font-size: 30px; font-family:Arial, Helvetica, sans-serif; border-radius: 90px;">Regiter As Customer</button>
+        </a>
+    </div>
+</div>
+</body>
+<%- include("partials/footer") -%>

@@ -1,0 +1,63 @@
+<%- include("partials/header") -%>
+
+<script>
+	document.body.style.background = "rgba(255, 255, 255, 0.2)";
+	document.body.style.backgroundImage= "url('/img/banner/new.jpeg')"
+</script>
+
+<div class="d-flex flex-row-reverse p-3 text-white" style="background-color: #2a1a30;">
+	<div class="p-2 text-center"
+		style="border-radius: 10px; width : 10%; background:transparent; padding-bottom : 0px;"><%=own.name%></div>
+</div>
+<div class="d-flex justify-content-center my-5 w-50 h-25" style="margin-left: 25%;">
+	<h2 style=" font-size: 60px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  ; color:aliceblue; border-radius: 10px"><%=own.shopname%></h2>
+</div>
+<div class="d-flex justify-content-center m-5 p-5">
+	<form action="/<%=own._id%>/additem" method="GET">
+		<button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 180px; height: 50px; font-size: 25px; border-block-color: rgb(63, 60, 60) ;background-color: rgb(63, 60, 60); border-radius: 50px;">Add Items</button>
+	</form>
+</div>
+
+<div class="row" style="justify-content: center;">
+	<% if(own.items.length == 0){ %>
+	<h3 style="color: aliceblue; font-size: 25px; font-family: Georgia, 'Times New Roman', Times, serif;">No items added</h3>
+	<% } else { %>
+	<%  own.items.forEach(function(item){ %>
+	<div class="col-xl-3 col-md-4 col-lg-3" >
+		<div class="jumbotron single_catagory" style="background-color: rgb(212, 212, 235);">
+			<div class="row">
+				<div class="col"><span>Name: </span></div>
+				<div class="col"><span><%=item.itemname%> </span></div>
+			</div>
+
+			<div class="row">
+				<div class="col"><span>Quantity: </span></div>
+				<div class="col"><span><%=item.quantity%> </span></div>
+			</div>
+			<div class="row">
+				<div class="col"><span>Expiry Period: </span></div>
+				<div class="col"><span><%=item.expiryperiod%> </span></div>
+			</div>
+	
+			<div class="row">
+				<div class="col"><span>Description: </span></div>
+				<div class="col">
+					<p><%=item.description%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col" style="left: 23%; padding-top: 5%;">
+					<a href="/<%=own._id%>/<%=item._id%>/edititem"><button type="button"
+							class="btn btn-primary btn-lg" style="background-color: rgb(32, 28, 28); border-radius: 30px;">Edit item</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%  }) %>
+	<%  } %>
+</div>
+
+<br><br><br>
+<!-- slider_area_end -->
+
+<%- include("partials/footer") -%>

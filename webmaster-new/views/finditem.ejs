@@ -1,0 +1,63 @@
+<%- include("partials/header") -%>
+
+
+<script>
+  document.body.style.background = "rgba(255, 255, 255, 0.2)";
+  document.body.style.backgroundImage = "url('/img/banner/new.jpeg')"
+</script>
+<div class="d-flex flex-row-reverse p-3 text-white" style="background-color: #2a1a30;">
+  <div class="p-2 text-center" style="border-radius: 10px; width : 10%; background:transparent; padding-bottom : 0px;">
+    <%=cus.name%></div>
+</div>
+
+<div class="container-fluid">
+  <div class="row" style="justify-content: center;">
+    <div class="jumbotron mt-5 text-center" style="background: transparent;">
+      <h1 style="color: aliceblue; font-size: 70px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Your Results</h1>
+    </div>
+  </div>
+
+  <div class="row" style="justify-content: center">
+    <%  item.forEach(function(item){%>
+    <div class="col-xl-3 col-md-4 col-lg-3">
+      <div class="jumbotron single_catagory" style="background-color: rgb(212, 212, 235);">
+        <div class="row">
+          <div class="col"><span style="font-size: 20px;"><b>Shop: </b></span></div>
+          <div class="col"><span style="font-size: 20px;"><b><%=item.shopname%> </b></span></div>
+        </div>
+
+        <div class="row">
+          <div class="col"><span>Owner: </span></div>
+          <div class="col"><span><%=item.owner%> </span></div>
+        </div>
+        <div class="row">
+          <div class="col"><span>Itemname: </span></div>
+          <div class="col"><span><%=item.itemname%> </span></div>
+        </div>
+        <div class="row">
+          <div class="col"><span>Description: </span></div>
+          <div class="col"><span><%=item.description%> </span></div>
+        </div><br><br>
+        <div class="row">
+          <div class="col" style="left : 30%"><span style="font-size: 20px;"><b>Distance </b></span></div><br>
+        </div>
+        <div class="row">
+          <div class="col" style="font-size: 50px; left: 5%"><span > <%=item.distance%> km </span></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <%  }) %>
+</div>
+
+<script>
+  function setDesc() {
+    document.getElementById("desc").innerHTML = "itemDesc";
+  }
+</script>
+
+</div><br><br>
+
+<%- include("partials/footer") -%>

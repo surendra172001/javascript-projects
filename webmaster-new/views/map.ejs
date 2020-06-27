@@ -1,0 +1,40 @@
+
+<html>
+
+<head>
+    <style>
+        #map{
+            width : 100%
+        }
+    </style>
+    <title>maps</title>
+</head>
+
+<body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map" style="height: 900px"></div>
+    
+
+    <%function initMap() {%>
+
+    <%var vjti = { lat: %><%=a%><%, lng: %><%=b%><%}%>
+    <%var ict = { lat: %><%=c%><%, lng: %><%=d%><%}%>
+
+
+    <%var map = new google.maps.Map(%>
+    <%document.getElementById('map'), { zoom: 15})%>
+      <%var map = new google.maps.Map(%>
+    <%document.getElementById('map'), { zoom: 15})%>
+
+    <%var marker = new google.maps.Marker({ position: vjti, map: map })%>
+    <%Animation = marker.setAnimation(google.maps.Animation.BOUNCE)%>
+
+    <%var marker = new google.maps.Marker({ position: ict, map: map })%>
+    <%Animation = marker.setAnimation(google.maps.Animation.BOUNCE) }%>
+    
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+</body>
+
+</html>
