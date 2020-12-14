@@ -1,2 +1,0 @@
-# web
-for web purpose
