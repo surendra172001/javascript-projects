@@ -28,8 +28,3 @@ app.listen(port, function() {
     console.log(`App listening on ${port}!!`); 
 });
 
-
-// API key
-// cc3673035fb0140fa8bb7e7cf49610d2-us19
-
-// 85be014dab
